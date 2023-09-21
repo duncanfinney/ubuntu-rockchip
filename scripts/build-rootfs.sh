@@ -145,16 +145,16 @@ apt-get -y remove cryptsetup needrestart
 apt-get -y autoremove && apt-get -y clean && apt-get -y autoclean
 EOF
 
-# Swapfile
-cat << EOF | chroot ${chroot_dir} /bin/bash
-set -eE 
-trap 'echo Error: in $0 on line $LINENO' ERR
+# # Swapfile
+# cat << EOF | chroot ${chroot_dir} /bin/bash
+# set -eE 
+# trap 'echo Error: in $0 on line $LINENO' ERR
 
-dd if=/dev/zero of=/tmp/swapfile bs=1024 count=2097152
-chmod 600 /tmp/swapfile
-mkswap /tmp/swapfile
-mv /tmp/swapfile /swapfile
-EOF
+# dd if=/dev/zero of=/tmp/swapfile bs=1024 count=2097152
+# chmod 600 /tmp/swapfile
+# mkswap /tmp/swapfile
+# mv /tmp/swapfile /swapfile
+# EOF
 
 # DNS
 cp ${overlay_dir}/etc/resolv.conf ${chroot_dir}/etc/resolv.conf
